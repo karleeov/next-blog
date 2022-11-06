@@ -14,7 +14,7 @@ function Hero() {
         />
       </div>
       <h1>Hi I am karl</h1>
-      <p>I BLOG SHIT LOL</p>
+      <p>Here is my blog to share the coding experience</p>
     </section>
   );
 }
