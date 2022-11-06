@@ -1,11 +1,12 @@
-import Link from 'next/link';
-import classes from './feature-posts.module.css';
+import Link from "next/link";
+import classes from "./featured-posts.module.css";
+import PostsGrid from "../posts/posts-grid";
 
-function FeaturedPosts() {
+function FeaturedPosts(props) {
   return (
     <section className={classes.latest}>
       <h2>Feature post</h2>
-      <Link></Link>
+      <PostsGrid posts={props.posts} />
     </section>
   );
 }
