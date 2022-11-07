@@ -1,4 +1,6 @@
-function handler(req, res) {
+import { MongoClient } from 'mongodb';
+
+async function handler(req, res) {
   if (req.method === 'POST') {
     const { email, message, name } = res.body;
 
@@ -20,7 +22,27 @@ function handler(req, res) {
       name,
       message,
     };
-    console.log(newMessage);
+
+    let client;
+    try {
+      const client = await MongoClient(
+        'mongodb+srv://karleeov:karlkarl@cluster0.5sdme.mongodb.net/karldb?retryWrites=true&w=majority'
+      );
+    } catch (error) {
+      res.status(500).json({ message: 'Could not get the db' });
+      return;
+    }
+
+    const db = client.db();
+    try {
+      db.collection('message').insertOne(newMessage);
+      newMessage.id = result.insertedId;
+    } catch (error) {
+      res.status(500).json({ messaage: 'stroing failed' });
+      return;
+    }
+
+    client.close();
     res.status(201).json({ message: newMessage, message: 'sent' });
   }
 }
